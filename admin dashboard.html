@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h2>Welcome, Admin</h2>
+    <body>
+        <h2>Recruitment Request</h2>
+        <form action="handle_request.php" method="POST">
+            <label for="student_id">Student ID:</label>
+            <input type="number" name="student_id" required>
+            <label for="requested_hours">Requested Hours:</label>
+            <input type="number" name="requested_hours" required>
+            <button type="submit" name="request_hours">Submit Request</button>
+        </form>
+    
+        <h2>Submit Timesheet</h2>
+        <form action="submit_timesheet.php" method="POST">
+            <label for="student_id">Student ID:</label>
+            <input type="number" name="student_id" required>
+            <label for="worked_hours">Worked Hours:</label>
+            <input type="number" name="worked_hours" required>
+            <button type="submit" name="submit_timesheet">Submit Timesheet</button>
+        </form>
+    </body>
+    <p>Manage timesheets and student approvals here.</p>
+</body>
+</html>
