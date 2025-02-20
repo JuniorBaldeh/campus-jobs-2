@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timesheet System</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        form { margin-bottom: 20px; }
+        label, input, button { display: block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Recruitment Request</h2>
+    <form action="handle_request.php" method="POST">
+        <label for="student_id">Student ID:</label>
+        <input type="number" name="student_id" required>
+        <label for="requested_hours">Requested Hours:</label>
+        <input type="number" name="requested_hours" required>
+        <button type="submit" name="request_hours">Submit Request</button>
+    </form>
+
+    <h2>Submit Timesheet</h2>
+    <form action="submit_timesheet.php" method="POST">
+        <label for="student_id">Student ID:</label>
+        <input type="number" name="student_id" required>
+        <label for="worked_hours">Worked Hours:</label>
+        <input type="number" name="worked_hours" required>
+        <button type="submit" name="submit_timesheet">Submit Timesheet</button>
+    </form>
+</body>
+</html>
