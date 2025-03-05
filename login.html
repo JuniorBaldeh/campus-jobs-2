@@ -57,6 +57,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="header">Campus Jobs</div>
     <div class="login-container">
         <h2>Login</h2>
@@ -70,5 +71,17 @@
             <button type="submit" name="login">Login</button>
         </form>
     </div>
+=======
+    <h2>Login</h2>
+    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <form action="login.php" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <br><br><br>
+        <button type="submit" name="login">Login</button>
+    </form>
+>>>>>>> 3c92ff57254c43242a42ed7e4804d86031c74c58
 </body>
 </html>

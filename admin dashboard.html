@@ -106,6 +106,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <nav>
         <div class="nav-left">
             <a href="home.php">Home</a>
@@ -181,20 +182,31 @@
                 </table>
             </div>
         </div>
+=======
+    <h2>Welcome, Admin</h2>
+    <body>
+        <hr>
+        <h2>Recruitment Request</h2>
+>>>>>>> 3c92ff57254c43242a42ed7e4804d86031c74c58
         <form action="handle_request.php" method="POST">
             <h2>Recruitment Request</h2>
             <label for="student_id">Student ID:</label>
             <input type="number" name="student_id" required>
             <label for="requested_hours">Requested Hours:</label>
-            <input type="number" name="requested_hours" required>
+            <input type="number" name="requested_hours" required><br><br>
             <button type="submit" name="request_hours">Submit Request</button>
         </form>
+<<<<<<< HEAD
+=======
+        <br><br><br>
+        <h2>Submit Timesheet</h2>
+>>>>>>> 3c92ff57254c43242a42ed7e4804d86031c74c58
         <form action="submit_timesheet.php" method="POST">
             <h2>Submit Timesheet</h2>
             <label for="student_id">Student ID:</label>
             <input type="number" name="student_id" required>
             <label for="worked_hours">Worked Hours:</label>
-            <input type="number" name="worked_hours" required>
+            <input type="number" name="worked_hours" required><br><br>
             <button type="submit" name="submit_timesheet">Submit Timesheet</button>
         </form>
     </div>
