@@ -1,30 +1,217 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        .student-review {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        .tabs button.active {
+            background-color: #954695;
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        label, input, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #954695;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #7a3a7a;
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome, Admin</h2>
-    <body>
-        <h2>Recruitment Request</h2>
+    <nav>
+        <div class="nav-left">
+            <a href="home.php">Home</a>
+            <a href="timesheets.php">Timesheets</a>
+            <a href="notifications.php">Notifications</a>
+            <a href="profile.php">Profile</a>
+            <a href="recruiter.php">Recruiter</a>
+        </div>
+        <div class="nav-right">
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Welcome, Admin</h2>
+        <div class="student-review">
+            <h2>Student Review</h2>
+            <div class="tabs">
+                <button class="active" onclick="showTab('visa')">Visa Students</button>
+                <button onclick="showTab('non-visa')">Non-Visa Students</button>
+            </div>
+            <div id="visa" class="tab-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Recruiter ID</th>
+                            <th>Date</th>
+                            <th>Strike Available</th>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                            <th>Total Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>02-02-2025</td>
+                            <td>02</td>
+                            <td>02-02-2025</td>
+                            <td>Yes</td>
+                            <td>09:00 AM</td>
+                            <td>05:00 PM</td>
+                            <td>8</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="non-visa" class="tab-content" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Recruiter ID</th>
+                            <th>Date</th>
+                            <th>Strike Available</th>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                            <th>Total Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>02-02-2025</td>
+                            <td>02</td>
+                            <td>02-02-2025</td>
+                            <td>No</td>
+                            <td>09:00 AM</td>
+                            <td>05:00 PM</td>
+                            <td>8</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <form action="handle_request.php" method="POST">
+            <h2>Recruitment Request</h2>
             <label for="student_id">Student ID:</label>
             <input type="number" name="student_id" required>
             <label for="requested_hours">Requested Hours:</label>
             <input type="number" name="requested_hours" required>
             <button type="submit" name="request_hours">Submit Request</button>
         </form>
-    
-        <h2>Submit Timesheet</h2>
         <form action="submit_timesheet.php" method="POST">
+            <h2>Submit Timesheet</h2>
             <label for="student_id">Student ID:</label>
             <input type="number" name="student_id" required>
             <label for="worked_hours">Worked Hours:</label>
             <input type="number" name="worked_hours" required>
             <button type="submit" name="submit_timesheet">Submit Timesheet</button>
         </form>
-    </body>
-    <p>Manage timesheets and student approvals here.</p>
+    </div>
+    <script>
+        function showTab(tabName) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            // Show the selected tab content
+            document.getElementById(tabName).style.display = 'block';
+            // Update active tab button
+            document.querySelectorAll('.tabs button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.tabs button[onclick="showTab('${tabName}')"]`).classList.add('active');
+        }
+    </script>
 </body>
 </html>

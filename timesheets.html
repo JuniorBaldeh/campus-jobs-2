@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Timesheet</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,37 +46,38 @@
         .container {
             padding: 20px;
         }
-        .welcome-section {
+        .timesheet-section {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
-        .welcome-section h2 {
-            margin: 0;
-        }
-        .content-section {
-            display: flex;
-            gap: 20px;
-        }
-        .content-section div {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            flex: 1;
-        }
-        .content-section h3 {
+        .timesheet-section h2 {
             margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-left">
-            <a href="home.php">Home</a>
-            <a href="timesheets.php">Timesheets</a> <!-- Link to Timesheet Page -->
+            <a href="student_dashboard.php">Student Dashboard</a>
+            <a href="timesheets.php">Timesheets</a>
             <a href="notifications.php">Notifications</a>
             <a href="profile.php">Profile</a>
         </div>
@@ -85,18 +86,38 @@
         </div>
     </nav>
     <div class="container">
-        <div class="welcome-section">
-            <h2>Welcome, Student</h2>
-        </div>
-        <div class="content-section">
-            <div>
-                <h3>Real-Time Hour Tracking</h3>
-                <p>View your remaining work hours for the week.</p>
-            </div>
-            <div>
-                <h3>Partial Approval</h3>
-                <p>If you are available for fewer hours than requested, you can negotiate adjustments.</p>
-            </div>
+        <div class="timesheet-section">
+            <h2>Timesheet</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Hours Worked</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-10-01</td>
+                        <td>4</td>
+                        <td>Project Work</td>
+                        <td>Approved</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-02</td>
+                        <td>5</td>
+                        <td>Research</td>
+                        <td>Pending</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-03</td>
+                        <td>3</td>
+                        <td>Documentation</td>
+                        <td>Rejected</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
