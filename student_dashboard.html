@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        .logout-button {
+            background-color: #954695;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .logout-button:hover {
+            background-color: #7a3a7a;
+        }
+        .container {
+            padding: 20px;
+        }
+        .welcome-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .welcome-section h2 {
+            margin: 0;
+        }
+        .content-section {
+            display: flex;
+            gap: 20px;
+        }
+        .content-section div {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        .content-section h3 {
+            margin-top: 0;
+        }
+        .logout-link {
+            display: block;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="home.php">Home</a>
+            <a href="timesheets.php">Timesheets</a>
+            <a href="notifications.php">Notifications</a>
+            <a href="profile.php">Profile</a>
+        </div>
+        <div class="nav-right">
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="welcome-section">
+            <h2>Welcome, Student</h2>
+        </div>
+        <div class="content-section">
+            <div>
+                <h3>Real-Time Hour Tracking</h3>
+                <p>View your remaining work hours for the week.</p>
+            </div>
+            <div>
+                <h3>Partial Approval</h3>
+                <p>If you are available for fewer hours than requested, you can negotiate adjustments.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
