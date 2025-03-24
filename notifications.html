@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        .logout-button {
+            background-color: #954695;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .logout-button:hover {
+            background-color: #7a3a7a;
+        }
+        .container {
+            padding: 20px;
+        }
+        .notification-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .notification-section h2 {
+            margin-top: 0;
+        }
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        .notification-item.unread {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+        .notification-item.read {
+            background-color: white;
+            color: #666;
+        }
+        .notification-item .time {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="student_dashboard.php">Student Dashboard</a>
+            <a href="timesheets.php">Timesheets</a>
+            <a href="notifications.php">Notifications</a>
+            <a href="profile.php">Profile</a>
+        </div>
+        <div class="nav-right">
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="notification-section">
+            <h2>Notifications</h2>
+            <div class="notification-item unread">
+                <p>Your timesheet for the week of 01-02-2025 has been approved.</p>
+                <div class="time">2 hours ago</div>
+            </div>
+            <div class="notification-item read">
+                <p>Reminder: Your request to work on 05-03-2025 has been rejected.</p>
+                <div class="time">1 day ago</div>
+            </div>
+            <div class="notification-item read">
+                <p>Your profile information has been updated successfully.</p>
+                <div class="time">7 days ago</div>
+            </div>
+            <div class="notification-item unread">
+                <p>New message from your supervisor: "Great work on the project!"</p>
+                <div class="time">5 minutes ago</div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
