@@ -345,6 +345,9 @@ button {
 
 button:hover {
     background-color: #0056b3;
+<<<<<<< HEAD
+}
+=======
     
     /* body{
         background-color: #8FBC8F
@@ -374,3 +377,4 @@ button:hover {
         align-items: center;
         height: 100vh;
     } */
+>>>>>>> b59ce0d8fe925f8d7b96b6d0fbed2b38fbaf5190
