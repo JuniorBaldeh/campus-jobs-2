@@ -259,13 +259,14 @@ button {
 
 button:hover {
     background-color: #0056b3;
-body{
-    background-color: #8FBC8F
-}
 
-form{
+/* body{
+    background-color: #8FBC8F
+} */
+
+/* form{
     text-align:center
-}
+} */
 
 label{
     font-size:20px;
