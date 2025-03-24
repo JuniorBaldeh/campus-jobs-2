@@ -216,7 +216,6 @@ th {
 }
 
 
-<<<<<<< HEAD
 .login-container {
     background-color: white;
     padding: 20px;
@@ -260,20 +259,4 @@ button {
 
 button:hover {
     background-color: #0056b3;
-=======
-body{
-    background-color: #8FBC8F
-}
-
-form{
-    text-align:center
-}
-
-label{
-    font-size:20px;
-}
-
-button{
-    font-size:20px
->>>>>>> 3c92ff57254c43242a42ed7e4804d86031c74c58
 }
