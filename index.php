@@ -1,96 +1,88 @@
 <?php
-// db.php - Database Connection
-$host = 'localhost';
-$db = 'timesheet_system';
-$user = 'root';
-$pass = '';
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+/**
+ * Admin Dashboard - Index Page
+ * 
+ * This is the main entry point for the admin dashboard
+ */
 
-// Create tables if they don't exist
-$conn->query("CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    role ENUM('admin', 'recruiter', 'student'),
-    email VARCHAR(255),
-    password VARCHAR(255),
-    visa_status ENUM('visa', 'non-visa'),
-    weekly_hours_limit INT DEFAULT 15
-);");
-
-$conn->query("CREATE TABLE IF NOT EXISTS requests (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    requested_hours INT,
-    status ENUM('pending', 'approved', 'denied'),
-    FOREIGN KEY (student_id) REFERENCES users(id)
-);");
-
-$conn->query("CREATE TABLE IF NOT EXISTS timesheets (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    worked_hours INT,
-    status ENUM('pending', 'approved', 'flagged'),
-    FOREIGN KEY (student_id) REFERENCES users(id)
-);");
-
-// login.php - Handle user login
+// 1. Initialize session and check authentication
 session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    $result = $conn->query("SELECT * FROM users WHERE email = '$email'");
-    $user = $result->fetch_assoc();
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['role'] = $user['role'];
-        header("Location: dashboard.php");
-        exit();
-    } else {
-        echo "Invalid email or password.";
-    }
+// Redirect to login if not authenticated
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
 }
+
+// Redirect if not admin
+if ($_SESSION['user_role'] !== 'admin') {
+    header("Location: unauthorized.php");
+    exit();
+}
+
+// 2. Set page variables
+$page_title = "Admin Dashboard";
+$current_page = "dashboard";
+
+// 3. Include database connection (uncomment when ready)
+// require_once 'includes/db_connection.php';
+
+// 4. Include header
+require_once 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?></h2>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Timesheet System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
+    <!-- Student Review Section -->
+    <div class="student-review">
+        <h2>Student Review</h2>
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('visa')">Visa Students</button>
+            <button class="tab-button" onclick="showTab('non-visa')">Non-Visa Students</button>
+        </div>
 
-        form {
-            margin-bottom: 20px;
-        }
+        <!-- Visa Students Tab -->
+        <div id="visa" class="tab-content active">
+            <?php include 'includes/tables/visa_students.php'; ?>
+        </div>
 
-        label,
-        input,
-        button {
-            display: block;
-            margin-top: 10px;
-        }
-    </style>
-</head>
+        <!-- Non-Visa Students Tab -->
+        <div id="non-visa" class="tab-content">
+            <?php include 'includes/tables/non_visa_students.php'; ?>
+        </div>
+    </div>
 
-<body>
-    <h2>Login</h2>
-    <form action="login.php" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
-        <button type="submit" name="login">Login</button>
+    <!-- Recruitment Request Form -->
+    <form action="actions/handle_request.php" method="POST" class="dashboard-form">
+        <h2>Recruitment Request</h2>
+        <div class="form-group">
+            <label for="student_id">Student ID:</label>
+            <input type="text" name="student_id" required>
+        </div>
+        <div class="form-group">
+            <label for="requested_hours">Requested Hours:</label>
+            <input type="number" name="requested_hours" required>
+        </div>
+        <button type="submit" name="request_hours" class="btn-primary">Submit Request</button>
     </form>
-</body>
 
-</html>
+    <!-- Timesheet Submission Form -->
+    <form action="actions/submit_timesheet.php" method="POST" class="dashboard-form">
+        <h2>Submit Timesheet</h2>
+        <div class="form-group">
+            <label for="student_id">Student ID:</label>
+            <input type="text" name="student_id" required>
+        </div>
+        <div class="form-group">
+            <label for="worked_hours">Worked Hours:</label>
+            <input type="number" name="worked_hours" required>
+        </div>
+        <button type="submit" name="submit_timesheet" class="btn-primary">Submit Timesheet</button>
+    </form>
+</div>
+
+<?php
+// 5. Include footer
+require_once 'includes/footer.php';
+?>
