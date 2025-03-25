@@ -105,6 +105,93 @@ th {
     margin-bottom: 20px;
 }
 
+.notification-section h2 {
+    margin-top: 0;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item.unread {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.notification-item.read {
+    background-color: #FFFFFF;
+    color: #666;
+}
+
+.notification-item.time {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.profile-section {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-section h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.profile-picture {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #954695;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    margin: 10px 0;
+}
+
+.profile-info strong {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+.edit-profile-button {
+    background-color: #954695;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+.edit-profile-button:hover {
+    background-color: #7a3a7a;
+}
+
 .student-details {
     background-color: #FFFFFF;
     padding: 20px;
@@ -258,9 +345,7 @@ button {
 
 button:hover {
     background-color: #0056b3;
-<<<<<<< HEAD
 }
-=======
     
     /* body{
         background-color: #8FBC8F
@@ -290,4 +375,3 @@ button:hover {
         align-items: center;
         height: 100vh;
     } */
->>>>>>> b59ce0d8fe925f8d7b96b6d0fbed2b38fbaf5190
