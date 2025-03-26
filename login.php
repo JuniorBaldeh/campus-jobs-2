@@ -13,22 +13,16 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Initialize variables
-$username = $email = '';
+$username = '';
 $errors = [];
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
-    // Sanitize inputs
-    $username = trim(filter_input(POST, 'username', FILTER_SANITIZE_STRING));
-    $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+    $username = trim(htmlspecialchars($_POST['username'] ?? '', ENT_QUOTES, 'UTF-8'));
     $password = $_POST['password'] ?? '';
 
-    // Validate inputs
     if (empty($username)) {
         $errors[] = "Username is required";
-    }
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format";
     }
     if (empty($password)) {
         $errors[] = "Password is required";
@@ -36,24 +30,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
     // Only proceed if no validation errors
     if (empty($errors)) {
-        // DATABASE AUTHENTICATION - REPLACE WITH YOUR ACTUAL CODE
+        // DATABASE AUTHENTICATION 
         $valid_user = false;
-        $db_username = 'Junior'; // Example - get from database
-        $db_email = 'yaya.jr@example.com'; // Example - get from database
-        $db_password_hash = password_hash('correct_password', PASSWORD_DEFAULT); // Example hash
+        $db_username = 'Junior'; // get from database
+        $db_password_hash = password_hash('correct_password', PASSWORD_DEFAULT);
+        $db_username2 = 'Akeel';
+        $db_password_hash2 = password_hash('correct_password', PASSWORD_DEFAULT);
+        $db_username3 = 'Muhktar';
+        $db_password_hash3 = password_hash('correct_password', PASSWORD_DEFAULT);
 
-        // Check if credentials match
-        if ($username === $db_username && $email === $db_email) {
-            if (password_verify($password, $db_password_hash)) {
-                $valid_user = true;
-            }
+        // Check if credentials match any user
+        if ($username === $db_username && password_verify($password, $db_password_hash)) {
+            $valid_user = true;
+        } elseif ($username === $db_username2 && password_verify($password, $db_password_hash2)) {
+            $valid_user = true;
+        } elseif ($username === $db_username3 && password_verify($password, $db_password_hash3)) {
+            $valid_user = true;
         }
 
         if ($valid_user) {
             // Successful login
             $_SESSION['user_id'] = 1; // Use actual user ID from DB
             $_SESSION['user_name'] = $username;
-            $_SESSION['user_email'] = $email;
             header("Location: index.php");
             exit();
         } else {
@@ -175,11 +173,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required
                     value="<?php echo htmlspecialchars($username); ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>">
             </div>
 
             <div class="form-group">

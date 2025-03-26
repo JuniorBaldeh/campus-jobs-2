@@ -12,23 +12,9 @@
     </thead>
     <tbody>
         <?php
-        // Example of dynamic data - replace with your actual database query
-        /*
-        $visaStudents = getVisaStudents(); // Your database function
-        foreach ($visaStudents as $student) {
-            echo "<tr>
-                <td>{$student['id']}</td>
-                <td>{$student['recruiter_id']}</td>
-                <td>{$student['date']}</td>
-                <td>{$student['availability']}</td>
-                <td>{$student['time_in']}</td>
-                <td>{$student['time_out']}</td>
-                <td>{$student['total_hours']}</td>
-            </tr>";
-        }
-        */
+
         ?>
-        <!-- Static example row -->
+
         <tr>
             <td>C2051</td>
             <td>02</td>
