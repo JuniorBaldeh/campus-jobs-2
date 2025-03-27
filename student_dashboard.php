@@ -1,38 +1,13 @@
 <?php
 // Start session and check authentication
 session_start();
-require_once 'includes/auth_check.php';
 
 // Verify user is a student
-if ($_SESSION['user_role'] !== 'student') {
-    header("Location: unauthorized.php");
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
+    header("Location: login.php");
     exit();
 }
 
-// Set page title
-$page_title = "Student Dashboard";
-
-// Include database connection
-require_once 'includes/db_connection.php';
-
-// Get student data
-$student_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare("SELECT * FROM students WHERE user_id = ?");
-$stmt->execute([$student_id]);
-$student = $stmt->fetch();
-
-// Get timesheet data
-$timesheet_stmt = $pdo->prepare("SELECT * FROM timesheets WHERE student_id = ? ORDER BY date DESC LIMIT 5");
-$timesheet_stmt->execute([$student_id]);
-$recent_timesheets = $timesheet_stmt->fetchAll();
-
-// Calculate hours
-$hours_stmt = $pdo->prepare("SELECT SUM(total_hours) as total_week_hours FROM timesheets 
-                            WHERE student_id = ? AND date >= DATE_SUB(NOW(), INTERVAL 7 DAY)");
-$hours_stmt->execute([$student_id]);
-$hours_data = $hours_stmt->fetch();
-$weekly_hours = $hours_data['total_week_hours'] ?? 0;
-$remaining_hours = max(0, 20 - $weekly_hours); // Assuming 20 hour weekly limit
 ?>
 
 <!DOCTYPE html>
@@ -143,13 +118,13 @@ $remaining_hours = max(0, 20 - $weekly_hours); // Assuming 20 hour weekly limit
 <body>
     <nav>
         <div class="nav-left">
-            <a href="home.php">Home</a>
-            <a href="timesheets.php">Timesheets</a>
-            <a href="notifications.php">Notifications</a>
-            <a href="profile.php">Profile</a>
+            <a href="student_dashboard.php">Home</a>
+            <a href="timesheets.html">Timesheets</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="profile.html">Profile</a>
         </div>
         <div class="nav-right">
-            <a href="actions/logout.php" class="logout-button">Logout</a>
+            <a href="Logout.php" class="logout-button">Logout</a>
         </div>
     </nav>
 
