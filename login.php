@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id'])) {
         header("Location: recruiter_dashboard.php");
     } elseif ($_SESSION['role'] === 'admin') {
         header("Location: admin_dashboard.php");
-    } else {
+    } elseif ($_SESSION['role'] === 'student') {
         header("Location: student_dashboard.php"); // For students
     }
     exit();
@@ -80,9 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } elseif ($user['role'] === 'admin') {
                     header("Location: admin_dashboard.php");
                     exit();
+                } elseif ($user['role'] === 'student') {
+                    header("Location: student_dashboard.php");
+                    exit();
                 }
-                header("Location: student_dashboard.php");
-                exit();
             }
         }
 
