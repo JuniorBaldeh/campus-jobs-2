@@ -16,8 +16,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($page_title); ?></title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Student Dashboard</title>
     <style>
         body {
             background-color: #f4f4f4;
@@ -139,7 +139,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
                 <h3>Real-Time Hour Tracking</h3>
                 <p>Your remaining work hours for this week:</p>
                 <div class="hours-display">
-                    <?php echo htmlspecialchars($remaining_hours); ?> / 20 hours remaining
+                 <!-- <?php echo htmlspecialchars($remaining_hours); ?>/ 20 hours remaining -->
                 </div>
                 <a href="timesheets.php" class="btn-primary">View All Timesheets</a>
             </div>
@@ -154,7 +154,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
 
         <div class="recent-timesheets" style="margin-top: 30px;">
             <h3>Recent Timesheet Entries</h3>
-            <?php if (count($recent_timesheets) > 0): ?>
+            <!-- <?php if (count($recent_timesheets) > 0): ?>
                 <table>
                     <thead>
                         <tr>
@@ -178,7 +178,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
-                </table>
+                </table> -->
             <?php else: ?>
                 <p>No timesheet entries found.</p>
             <?php endif; ?>
