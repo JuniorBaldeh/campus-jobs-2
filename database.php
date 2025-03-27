@@ -21,14 +21,13 @@ class Database
         $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 
-        // Create contacts table if it doesn't exist
+
         $this->connection->exec("
             -- Create Students table
 CREATE TABLE IF NOT EXISTS Students (
     student_id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     role ENUM('student', 'admin') NOT NULL DEFAULT 'student',
     PRIMARY KEY (student_id)

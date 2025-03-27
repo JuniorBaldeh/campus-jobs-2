@@ -8,7 +8,14 @@ session_start();
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    // Redirect based on role if already logged in
+    if ($_SESSION['role'] === 'recruiter') {
+        header("Location: recruiter_dashboard.php");
+    } elseif ($_SESSION['role'] === 'admin') {
+        header("Location: admin_dashboard.php");
+    } else {
+        header("Location: student_dashboard.php"); // For students
+    }
     exit();
 }
 
@@ -17,10 +24,12 @@ $username = '';
 $errors = [];
 
 // Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Initialize variables
     $username = trim(htmlspecialchars($_POST['username'] ?? '', ENT_QUOTES, 'UTF-8'));
     $password = $_POST['password'] ?? '';
 
+    // Validate inputs
     if (empty($username)) {
         $errors[] = "Username is required";
     }
@@ -30,33 +39,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
     // Only proceed if no validation errors
     if (empty($errors)) {
-        // DATABASE AUTHENTICATION 
-        $valid_user = false;
-        $db_username = 'Junior'; // get from database
-        $db_password_hash = password_hash('correct_password', PASSWORD_DEFAULT);
-        $db_username2 = 'Akeel';
-        $db_password_hash2 = password_hash('correct_password', PASSWORD_DEFAULT);
-        $db_username3 = 'Muhktar';
-        $db_password_hash3 = password_hash('correct_password', PASSWORD_DEFAULT);
+        // SIMULATED DATABASE - WITH CORRECT ROLES
+        $users = [
+            'Junior' => [
+                'password_hash' => password_hash('correct_password', PASSWORD_DEFAULT),
+                'role' => 'student',
+                'user_id' => 1
+            ],
+            'Akeel' => [
+                'password_hash' => password_hash('correct_password', PASSWORD_DEFAULT),
+                'role' => 'admin',
+                'user_id' => 2
+            ],
+            'Muhktar' => [
+                'password_hash' => password_hash('correct_password', PASSWORD_DEFAULT),
+                'role' => 'recruiter',
+                'user_id' => 3,
+                'company' => 'Tech Corp'
+            ]
+        ];
 
-        // Check if credentials match any user
-        if ($username === $db_username && password_verify($password, $db_password_hash)) {
-            $valid_user = true;
-        } elseif ($username === $db_username2 && password_verify($password, $db_password_hash2)) {
-            $valid_user = true;
-        } elseif ($username === $db_username3 && password_verify($password, $db_password_hash3)) {
-            $valid_user = true;
+        // Check if user exists and password matches
+        if (isset($users[$username])) {
+            $user = $users[$username];
+
+            if (password_verify($password, $user['password_hash'])) {
+                // Successful login
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_name'] = $username;
+                $_SESSION['role'] = $user['role'];
+
+                if ($user['role'] === 'recruiter') {
+                    $_SESSION['company'] = $user['company'];
+                }
+
+                // Redirect based on role
+                if ($user['role'] === 'recruiter') {
+                    header("Location: recruiter_dashboard.php");
+                    exit();
+                } elseif ($user['role'] === 'admin') {
+                    header("Location: admin_dashboard.php");
+                    exit();
+                }
+                header("Location: student_dashboard.php");
+                exit();
+            }
         }
 
-        if ($valid_user) {
-            // Successful login
-            $_SESSION['user_id'] = 1; // Use actual user ID from DB
-            $_SESSION['user_name'] = $username;
-            header("Location: index.php");
-            exit();
-        } else {
-            $errors[] = "Invalid credentials";
-        }
+        $errors[] = "Invalid credentials";
     }
 }
 ?>
