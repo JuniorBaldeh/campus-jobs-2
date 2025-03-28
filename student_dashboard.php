@@ -148,7 +148,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
                 <h3>Partial Approval</h3>
                 <p>If you are available for fewer hours than requested, you can negotiate adjustments with your
                     recruiter.</p>
-                <a href="notifications.php" class="btn-primary">View Requests</a>
+                <!-- <a href="notifications.php"--> <a href="request_approval.html" class="btn-primary">View Requests</a>
             </div>
         </div>
 
