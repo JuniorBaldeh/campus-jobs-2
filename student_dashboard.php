@@ -20,34 +20,34 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     <title>Student Dashboard</title>
     <style>
         body {
-            background-color: #f4f4f4;
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
 
-        nav {
+        /* .nav-left {
             background-color: #333;
             color: white;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
+        } */
 
         .nav-left,
         .nav-right {
             display: flex;
-            gap: 20px;
+            /* gap: 20px; */
         }
 
-        nav a {
+        /* nav a {
             color: white;
             text-decoration: none;
             padding: 8px 12px;
             border-radius: 4px;
             transition: background-color 0.3s;
-        }
+        } */
 
         nav a:hover {
             background-color: rgba(255, 255, 255, 0.1);
@@ -118,7 +118,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
 <body>
     <nav>
         <div class="nav-left">
-            <a href="student_dashboard.php">Home</a>
+            <!-- <a href="student_dashboard.html">Home</a> -->
             <a href="timesheets.html">Timesheets</a>
             <a href="notifications.html">Notifications</a>
             <a href="profile.html">Profile</a>
