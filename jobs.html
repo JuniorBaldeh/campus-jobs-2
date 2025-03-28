@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Job Postings | CampusJobs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .header {
+            background-color: #954695;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-btn {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #f1f1f1;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab.active {
+            background: #954695;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Job Posting Styles */
+        .job-posting {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .job-title {
+            color: #954695;
+            margin-top: 0;
+        }
+
+        .job-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #954695;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Form Styles */
+        .job-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #954695;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .submit-btn:hover {
+            background-color: #7a3a7a;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CampusJobs Recruiter Portal</h1>
+        <a href="#" class="logout-btn">Logout</a>
+    </div>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('view-jobs')">View Job Postings</div>
+            <div class="tab" onclick="switchTab('post-job')">Post New Job</div>
+        </div>
+
+        <!-- View Jobs Tab -->
+        <div id="view-jobs" class="tab-content active">
+            <h2>Current Job Postings</h2>
+            
+            <div class="job-posting">
+                <h3 class="job-title">Web Developer Intern</h3>
+                <div class="job-meta">
+                    <span><strong>Company:</strong> Tech Solutions Inc.</span> | 
+                    <span><strong>Location:</strong> Remote</span> | 
+                    <span><strong>Type:</strong> Internship</span> |
+                    <span><strong>Posted:</strong> June 15, 2023</span>
+                </div>
+                
+                <h4 class="section-title">Job Description</h4>
+                <p>We're looking for a motivated web development intern to join our team for the summer. You'll work on real projects, learn from experienced developers, and contribute to our client work.</p>
+                
+                <h4 class="section-title">Requirements</h4>
+                <ul>
+                    <li>Basic knowledge of HTML, CSS, and JavaScript</li>
+                    <li>Currently pursuing a degree in Computer Science or related field</li>
+                    <li>Strong problem-solving skills</li>
+                    <li>Ability to work 20 hours per week</li>
+                </ul>
+                
+                <h4 class="section-title">How to Apply</h4>
+                <p>Applications are being accepted through our Handshake portal. Click the button below to apply.</p>
+                
+                <a href="https://shu.joinhandshake.co.uk/login" class="submit-btn" target="_blank">View Applications</a>
+            </div>
+            
+            <div class="job-posting">
+                <h3 class="job-title">Marketing Assistant</h3>
+                <div class="job-meta">
+                    <span><strong>Company:</strong> Creative Marketing Ltd.</span> | 
+                    <span><strong>Location:</strong> Sheffield City Centre</span> | 
+                    <span><strong>Type:</strong> Part-time</span> |
+                    <span><strong>Posted:</strong> June 10, 2023</span>
+                </div>
+                
+                <h4 class="section-title">Job Description</h4>
+                <p>Join our marketing team to help with social media management, content creation, and campaign coordination. Perfect for marketing students looking for practical experience.</p>
+                
+                <h4 class="section-title">Requirements</h4>
+                <ul>
+                    <li>Excellent written communication skills</li>
+                    <li>Familiarity with major social media platforms</li>
+                    <li>Basic graphic design skills (Canva/Photoshop)</li>
+                    <li>10-15 hours per week availability</li>
+                </ul>
+                
+                <a href="https://shu.joinhandshake.co.uk/login" class="submit-btn" target="_blank">View Applications</a>
+            </div>
+        </div>
+
+        <!-- Post Job Tab -->
+        <div id="post-job" class="tab-content">
+            <h2>Post a New Job Opportunity</h2>
+            
+            <form class="job-form">
+                <div class="form-group">
+                    <label for="job-title">Job Title*</label>
+                    <input type="text" id="job-title" name="job-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company-name">Company Name*</label>
+                    <input type="text" id="company-name" name="company-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="job-type">Job Type*</label>
+                    <select id="job-type" name="job-type" required>
+                        <option value="">Select job type</option>
+                        <option value="full-time">Full-time</option>
+                        <option value="part-time">Part-time</option>
+                        <option value="internship">Internship</option>
+                        <option value="placement">Placement</option>
+                        <option value="graduate">Graduate Scheme</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Location*</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Job Description*</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="requirements">Requirements*</label>
+                    <textarea id="requirements" name="requirements" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="how-to-apply">How to Apply*</label>
+                    <textarea id="how-to-apply" name="how-to-apply" required>Applications are being accepted through our Handshake portal.</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-link">Application Link (Handshake URL)*</label>
+                    <input type="text" id="application-link" name="application-link" value="https://shu.joinhandshake.co.uk/login" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Post Job</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Deactivate all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Activate selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Form submission handler
+        document.querySelector('.job-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Job posted successfully!');
+            // In a real implementation, you would send the data to your server here
+            switchTab('view-jobs');
+        });
+    </script>
+</body>
+</html>
