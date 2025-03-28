@@ -112,6 +112,22 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
         th {
             background-color: #f2f2f2;
         }
+
+        .apply-btn {
+            display: inline-block;
+            background-color: #954695;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .apply-btn:hover {
+            background-color: #7a3a7a;
+        }
     </style>
 </head>
 
@@ -139,9 +155,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
                 <h3>Real-Time Hour Tracking</h3>
                 <p>Your remaining work hours for this week:</p>
                 <div class="hours-display">
-                 <!-- <?php echo htmlspecialchars($remaining_hours); ?>/ 20 hours remaining -->
+                    <!-- <?php echo htmlspecialchars($remaining_hours); ?>/ 20 hours remaining -->
                 </div>
-                <a href="timesheets.php" class="btn-primary">View All Timesheets</a>
+
             </div>
 
             <div>
@@ -153,7 +169,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
         </div>
 
         <div class="recent-timesheets" style="margin-top: 30px;">
-            <h3>Recent Timesheet Entries</h3>
+            <h3>Apply For Jobs</h3>
+            <a href="https://shu.joinhandshake.co.uk/login" class="apply-btn" target="_blank">Apply Now</a>
             <!-- <?php if (count($recent_timesheets) > 0): ?>
                 <table>
                     <thead>
@@ -183,6 +200,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
                 <p>No timesheet entries found.</p>
             <?php endif; ?>
         </div>
+
     </div>
 </body>
 
