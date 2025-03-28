@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
 // Start session and check authentication
 session_start();
 
@@ -186,4 +187,22 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     </div>
 </body>
 
+=======
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['user_name'] !== 'Junior') {
+    header("Location: login.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h1>
+    <p>This is your student dashboard.</p>
+    <a href="logout.php">Logout</a>
+</body>
+>>>>>>> Stashed changes
 </html>
