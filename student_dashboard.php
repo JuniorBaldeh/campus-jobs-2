@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
 // Start session and check authentication
 session_start();
 
@@ -164,7 +165,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
                 <h3>Partial Approval</h3>
                 <p>If you are available for fewer hours than requested, you can negotiate adjustments with your
                     recruiter.</p>
-                <a href="notifications.php" class="btn-primary">View Requests</a>
+                <!-- <a href="notifications.php"--> <a href="request_approval.html" class="btn-primary">View Requests</a>
             </div>
         </div>
 
@@ -204,4 +205,22 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     </div>
 </body>
 
+=======
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['user_name'] !== 'Junior') {
+    header("Location: login.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h1>
+    <p>This is your student dashboard.</p>
+    <a href="logout.php">Logout</a>
+</body>
+>>>>>>> Stashed changes
 </html>

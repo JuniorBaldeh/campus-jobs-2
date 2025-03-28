@@ -7,6 +7,9 @@
     <title>Admin Dashboard</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f4;
             
         }
@@ -37,16 +40,25 @@
         button:hover {
             background-color: #7a3a7a;
         }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-top">
-            <a href="home.php">Home</a>
-            <a href="timesheets.php">Timesheets</a>
-            <a href="notifications.php">Notifications</a>
-            <a href="profile.php">Profile</a>
-            <a href="recruiter.php">Recruiter</a>
+        <div class="nav-left">
+            <!-- <a href="home.php">Home</a> -->
+             <!-- <a href="admin_dashboard.html">Home</a> -->
+            <!-- <a href="timesheets.php">Timesheets</a> -->
+             <a href="timesheets.html">Timesheets</a>
+            <!-- <a href="notifications.php">Notifications</a> -->
+             <a href="notifications.html">Notifications</a>
+            <!-- <a href="profile.php">Profile</a> -->
+             <a href="profile.html">Profile</a>
+            <!-- <a href="recruiter.php">Recruiter</a> -->
+             <a href="recruiter.html">Recruiter</a>
         </div>
         <div class="nav-right">
             <a href="logout.php" class="logout-button">Logout</a>
