@@ -30,9 +30,10 @@ $stmt->execute();
             --dark: #343a40;
         }
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            background: #f4f4f4;
+            padding: 0;
+            background-color: #f4f4f4;
         }
         nav {
             background: var(--dark);

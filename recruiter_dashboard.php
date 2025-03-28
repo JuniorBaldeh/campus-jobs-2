@@ -25,7 +25,7 @@ $userName = $_SESSION['user_name'] ?? 'Recruiter';
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #f4f4f4;
         }
 
         .header {
