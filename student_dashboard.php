@@ -1,5 +1,4 @@
 <?php
-<<<<<<< Updated upstream
 // Start session and check authentication
 session_start();
 
