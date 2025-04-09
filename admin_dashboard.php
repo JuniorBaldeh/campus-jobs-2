@@ -1,22 +1,20 @@
 <?php
-// admin_dashboard.php
+// Start session and verify authentication
 session_start();
 
-// Strict security checks
+// Redirect to login if not authenticated as recruiter
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
 
-require_once 'database.php';
-
-// Get admin name
-$admin_id = $_SESSION['user_id'];
-$stmt = $conn->prepare("SELECT first_name, last_name FROM Students WHERE student_id = ?");
-$stmt->execute();
+// Get recruiter data from session
+$companyName = $_SESSION['company'] ?? 'Your Company';
+$userName = $_SESSION['user_name'] ?? 'Admin';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +27,14 @@ $stmt->execute();
             --success: #28a745;
             --dark: #343a40;
         }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
         }
+
         nav {
             background: var(--dark);
             color: white;
@@ -42,12 +42,14 @@ $stmt->execute();
             display: flex;
             justify-content: space-between;
         }
+
         .nav-links a {
             color: white;
             text-decoration: none;
             margin-right: 15px;
             padding: 5px 10px;
         }
+
         .logout-btn {
             background: var(--danger);
             padding: 8px 15px;
@@ -55,28 +57,34 @@ $stmt->execute();
             color: white;
             text-decoration: none;
         }
+
         .container {
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .card {
             background: white;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         .btn {
             padding: 8px 15px;
             border-radius: 4px;
@@ -84,11 +92,21 @@ $stmt->execute();
             text-decoration: none;
             display: inline-block;
         }
-        .btn-primary { background: var(--primary); }
-        .btn-success { background: var(--success); }
-        .btn-danger { background: var(--danger); }
+
+        .btn-primary {
+            background: var(--primary);
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="nav-links">
@@ -97,7 +115,7 @@ $stmt->execute();
             <a href="manage_timesheets.php"><i class="fas fa-clock"></i> Timesheets</a>
         </div>
         <div>
-            <span style="margin-right:15px;">Welcome, <?= htmlspecialchars($admin['first_name'] ?? 'Admin') ?></span>
+            <!-- <span style="margin-right:15px;">Welcome, <?= htmlspecialchars($admin['first_name']) ?></span> -->
             <a href="logout.php" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </nav>
@@ -107,7 +125,8 @@ $stmt->execute();
             <h2>Admin Controls</h2>
             <div class="quick-actions">
                 <a href="add_student.php" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Student</a>
-                <a href="review_timesheets.php" class="btn btn-primary"><i class="fas fa-file-alt"></i> Review Timesheets</a>
+                <a href="review_timesheets.php" class="btn btn-primary"><i class="fas fa-file-alt"></i> Review
+                    Timesheets</a>
             </div>
         </div>
 
@@ -148,7 +167,7 @@ $stmt->execute();
             });
             document.getElementById(tabId).style.display = 'block';
         }
-        
+
         // Confirm important actions
         document.querySelectorAll('.btn-danger').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -157,4 +176,5 @@ $stmt->execute();
         });
     </script>
 </body>
+
 </html>
