@@ -164,7 +164,7 @@ if (isset($_GET['edit'])) {
 <body>
     <div class="container">
         <div class="header">
-            <h2 class="text-center mb-4">Student Timesheet System</h2>
+            <h2 class="text-center mb-4">Timesheet System</h2>
             <a href="recruiter_dashboard.php" class="btn btn-cancel">Back to Dashboard</a>
         </div>
 
@@ -201,72 +201,64 @@ if (isset($_GET['edit'])) {
                     </div>
                 </div>
 
-                <div class="mb-4">
-                    <label for="timesheet_file" class="form-label">Timesheet File (PDF, Excel, Word)</label>
-                    <input type="file" class="form-control" id="timesheet_file" name="timesheet_file" <?php echo $edit_timesheet ? '' : ''; ?>>
-                    <div class="form-text">Upload your completed timesheet file</div>
-                    <?php if ($edit_timesheet && $edit_timesheet['file_path']): ?>
-                        <div class="mt-2">
-                            Current file: <a href="<?php echo $edit_timesheet['file_path']; ?>" target="_blank">Download</a>
-                        </div>
-                    <?php endif; ?>
-                </div>
 
-                <button type="submit" name="<?php echo $edit_timesheet ? 'update_timesheet' : 'submit_timesheet'; ?>"
-                    class="btn btn-primary">
-                    <?php echo $edit_timesheet ? 'Update Timesheet' : 'Submit Timesheet'; ?>
-                </button>
-
-                <?php if ($edit_timesheet): ?>
-                    <a href="upload_timesheet.php" class="btn btn-secondary">Cancel</a>
-                <?php endif; ?>
-            </form>
         </div>
 
-        <div class="table-responsive">
-            <h4>Timesheet Records</h4>
-            <?php if (!empty($timesheets)): ?>
-                <table class="table table-striped">
-                    <thead>
+        <button type="submit" name="<?php echo $edit_timesheet ? 'update_timesheet' : 'submit_timesheet'; ?>"
+            class="btn btn-primary">
+            <?php echo $edit_timesheet ? 'Update Timesheet' : 'Submit Timesheet'; ?>
+        </button>
+
+        <?php if ($edit_timesheet): ?>
+            <a href="upload_timesheet.php" class="btn btn-secondary">Cancel</a>
+        <?php endif; ?>
+        </form>
+    </div>
+
+    <div class="table-responsive">
+        <h4>Timesheet Records</h4>
+        <?php if (!empty($timesheets)): ?>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Week Starting</th>
+                        <th>Hours</th>
+                        <th>File</th>
+                        <th>Submitted</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($timesheets as $ts): ?>
                         <tr>
-                            <th>Student</th>
-                            <th>Week Starting</th>
-                            <th>Hours</th>
-                            <th>File</th>
-                            <th>Submitted</th>
-                            <th>Actions</th>
+                            <td><?php echo htmlspecialchars($ts['student_name']); ?></td>
+                            <td><?php echo date('M j, Y', strtotime($ts['week_start'])); ?></td>
+                            <td><?php echo htmlspecialchars($ts['hours_worked']); ?></td>
+                            <td>
+                                <?php if (!empty($ts['file_path'])): ?>
+                                    <a href="<?php echo $ts['file_path']; ?>" target="_blank" class="file-link">
+                                        Download
+                                    </a>
+                                <?php else: ?>
+                                    <span class="text-muted">No file</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo date('M j, Y g:i a', strtotime($ts['uploaded_at'])); ?></td>
+                            <td>
+                                <a href="upload_timesheet.php?edit=<?php echo $ts['id']; ?>"
+                                    class="btn btn-sm btn-warning">Edit</a>
+                                <a href="upload_timesheet.php?delete=<?php echo $ts['id']; ?>" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this timesheet?')">Delete</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($timesheets as $ts): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($ts['student_name']); ?></td>
-                                <td><?php echo date('M j, Y', strtotime($ts['week_start'])); ?></td>
-                                <td><?php echo htmlspecialchars($ts['hours_worked']); ?></td>
-                                <td>
-                                    <?php if (!empty($ts['file_path'])): ?>
-                                        <a href="<?php echo $ts['file_path']; ?>" target="_blank" class="file-link">
-                                            Download
-                                        </a>
-                                    <?php else: ?>
-                                        <span class="text-muted">No file</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?php echo date('M j, Y g:i a', strtotime($ts['uploaded_at'])); ?></td>
-                                <td>
-                                    <a href="upload_timesheet.php?edit=<?php echo $ts['id']; ?>"
-                                        class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="upload_timesheet.php?delete=<?php echo $ts['id']; ?>" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Are you sure you want to delete this timesheet?')">Delete</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php else: ?>
-                <p>No timesheets found.</p>
-            <?php endif; ?>
-        </div>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>No timesheets found.</p>
+        <?php endif; ?>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

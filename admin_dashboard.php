@@ -141,19 +141,49 @@ $userName = $_SESSION['user_name'] ?? 'Admin';
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <table>
                     <tr>
                         <td>John Doe</td>
                         <td>Timesheet Submission</td>
-                        <td>2023-11-15 14:30</td>
-                        <td><span class="btn btn-success">Approved</span></td>
+                        <td>2025-06-12 14:30</td>
+                        <td>
+                            <button class="btn btn-primary accept-btn">Accept</button>
+                            <!-- The "Approved" status will appear here after clicking -->
+                        </td>
                     </tr>
                     <tr>
                         <td>Jane Smith</td>
                         <td>Job Application</td>
-                        <td>2023-11-15 10:15</td>
+                        <td>2025-06-15 10:15</td>
                         <td><span class="btn btn-danger">Pending</span></td>
                     </tr>
+                </table>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const acceptButtons = document.querySelectorAll('.accept-btn');
+
+                        acceptButtons.forEach(button => {
+                            button.addEventListener('click', function () {
+                                // 1. Change the button to show "Approved" status
+                                this.classList.remove('btn-primary');
+                                this.classList.add('btn-success');
+                                this.textContent = 'Approved';
+                                this.disabled = true;
+
+                                // 2. Show acceptance message (optional)
+                                alert('Timesheet Accepted!');
+
+                                // 3. Remove the entire row after 2 seconds (optional delay)
+                                setTimeout(() => {
+                                    const row = this.closest('tr');
+                                    if (row) row.remove();
+                                }, 2000); // Remove after 2 seconds (adjust as needed)
+                            });
+                        });
+                    });
+                </script>
+
                 </tbody>
             </table>
         </div>

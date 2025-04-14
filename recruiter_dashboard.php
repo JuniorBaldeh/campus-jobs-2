@@ -147,19 +147,11 @@ $userName = $_SESSION['user_name'];
                     <li><a href="upload_timesheet.php">Upload Timesheets</a></li>
                     <li><a href="view_timesheets.php">View Timesheets</a></li>
                     <li><a href="timesheet_approvals.php">Approve Timesheets</a></li>
-                    <li><a href="contact_admin.php?reason=timesheet_delay">Report Issue</a></li>
+                    <!-- <li><a href="contact_admin.php?reason=timesheet_delay">Report Issue</a></li> -->
                 </ul>
             </div>
 
-            <!-- Profile Card -->
-            <div class="card">
-                <h3>My Profile</h3>
-                <ul>
-                    <li><a href="edit_profile.php">Update Profile</a></li>
-                    <li><a href="change_password.php">Change Password</a></li>
-                    <li><a href="notification_settings.php">Notification Settings</a></li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </body>
