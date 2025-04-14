@@ -82,6 +82,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
+    // After the student is successfully added ($stmt->execute)
+if ($stmt->rowCount() > 0) {
+    // Record this activity
+    $conn->query("
+        INSERT INTO activities 
+        (student_id, action_type, status) 
+        VALUES (
+            LAST_INSERT_ID(), 
+            'student_added', 
+            'approved'
+        )
+    ");
+    
+    $success = "Student added successfully!";
+    $student = []; // Clear form
+}
 }
 ?>
 <!DOCTYPE html>
