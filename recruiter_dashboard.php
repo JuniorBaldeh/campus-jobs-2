@@ -1,16 +1,12 @@
 <?php
-// Start session and verify authentication
 session_start();
-
-// Redirect to login if not authenticated as recruiter
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'recruiter') {
     header("Location: login.php");
     exit();
 }
 
-// Get recruiter data from session
-$companyName = $_SESSION['company'] ?? 'Your Company';
-$userName = $_SESSION['user_name'] ?? 'Recruiter';
+$companyName = $_SESSION['company'];
+$userName = $_SESSION['user_name'];
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +21,7 @@ $userName = $_SESSION['user_name'] ?? 'Recruiter';
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
             background-color: #f4f4f4;
         }
 
@@ -61,6 +58,58 @@ $userName = $_SESSION['user_name'] ?? 'Recruiter';
             cursor: pointer;
             text-decoration: none;
         }
+
+        .logout-btn:hover {
+            background-color: #c9302c;
+        }
+
+        .dashboard-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #954695;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #954695;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .card li:last-child {
+            border-bottom: none;
+        }
+
+        .card a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .card a:hover {
+            color: #954695;
+        }
     </style>
 </head>
 
@@ -80,14 +129,29 @@ $userName = $_SESSION['user_name'] ?? 'Recruiter';
             <p>You are logged in as a recruiter for <?php echo htmlspecialchars($companyName); ?>.</p>
         </div>
 
-        <div>
-            <h3>Recruiter Actions</h3>
-            <ul>
-                <li><a href="post_job.php">Post New Job</a></li>
-                <li><a href="view_applications.php">View Applications</a></li>
-                <li><a href="manage_jobs.php">Manage Job Listings</a></li>
-                <li><a href="students_timeshe.php">Student Timesheets Listings</a></li>
-            </ul>
+        <div class="dashboard-cards">
+            <!-- Job Management Card -->
+            <div class="card">
+                <h3>Job Management</h3>
+                <ul>
+                    <li><a href="jobs.php">Post New Job</a></li>
+                    <li><a href="manage_jobs.php">Manage Job Listings</a></li>
+                    <li><a href="view_applications.php">View Applications</a></li>
+                </ul>
+            </div>
+
+            <!-- Timesheets Card -->
+            <div class="card">
+                <h3>Timesheets</h3>
+                <ul>
+                    <li><a href="upload_timesheet.php">Upload Timesheets</a></li>
+                    <li><a href="view_timesheets.php">View Timesheets</a></li>
+                    <li><a href="timesheet_approvals.php">Approve Timesheets</a></li>
+                    <!-- <li><a href="contact_admin.php?reason=timesheet_delay">Report Issue</a></li> -->
+                </ul>
+            </div>
+
+
         </div>
     </div>
 </body>
